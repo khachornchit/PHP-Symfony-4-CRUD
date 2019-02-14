@@ -54,9 +54,14 @@ class UserController extends ApiController
 
             case "POST":
                 try {
-                    $created = User::create($request->getContent());
-                    $this->userRepository->create($created);
-                    return $this->respondCreated($created);
+                    $passwordStrength = User::passwordStrengthCheck($request->getContent());
+                    if ($passwordStrength["password_strength"] == false) {
+                        return $this->respondFromArrayData($passwordStrength);
+                    } else {
+                        $created = User::create($request->getContent());
+                        $this->userRepository->create($created);
+                        return $this->respondCreated($created);
+                    }
                 } catch (exception $e) {
                     return $this->respondValidationError('POST /Users Error!');
                 }
@@ -85,10 +90,15 @@ class UserController extends ApiController
 
             case "PUT":
                 try {
-                    $existingUser = $this->userRepository->find($id);
-                    $updated = User::update($request->getContent(), $existingUser);
-                    $this->userRepository->update($updated);
-                    return $this->respond($updated);
+                    $passwordStrength = User::passwordStrengthCheck($request->getContent());
+                    if ($passwordStrength["password_strength"] == false) {
+                        return $this->respondFromArrayData($passwordStrength);
+                    } else {
+                        $existingUser = $this->userRepository->find($id);
+                        $updated = User::update($request->getContent(), $existingUser);
+                        $this->userRepository->update($updated);
+                        return $this->respond($updated);
+                    }
                 } catch (exception $e) {
                     return $this->respondValidationError('PUT /Users Error!');
                 }

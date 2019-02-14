@@ -22,48 +22,61 @@ Simple CRUD functionality using PHP Symfony 4.2 version by John <john@pluto.solu
 See example of result at file *tests/Symfony 4 screen.png*
 
 ## Test CRUD functions
-* POST http://localhost:8000/api/users 
-Example of POST data
+##### POST http://localhost:8000/api/users 
+* Example of POST requested
 `
 {
-   "username":"user_x",
-   "userpassword": "password1_x"
+   "username":"user_2",
+   "userpassword": "password1_2"
 }
 `
+* Example of POST response data
+`
+{
+   "id": 17,
+   "username": "user_2",
+   "userpassword": "ba8c2644e819314acf8a2bb656713b20ec65f063",
+   "description": "Password was checked in haveibeenpwned.com"
+}`
 
-* GET http://localhost:8000/api/users then you will get response as follow sample
+##### GET http://localhost:8000/api/users then you will get response as follow sample
 Then you will receive response JSON data as follow
 `
 {"users": [
       {
-      "id": 4,
-      "username": "user1",
-      "userpassword": "password1"
+      "id": 16,
+      "username": "user_1",
+      "userpassword": "135c99719ff81122f3ac384d342a361e3a1ad95f",
+      "description": "Password was checked in haveibeenpwned.com"
    },
       {
-      "id": 5,
-      "username": "user_x",
-      "userpassword": "password1_x"
-   }
-]}
-
-* PUT http://localhost:8000/api/users/{id} then you will get response as follow sample
-`
-{"users": [
-      {
-      "id": 4,
-      "username": "user1",
-      "userpassword": "password1"
-   },
-      {
-      "id": 5,
-      "username": "user_x",
-      "userpassword": "password1_x"
+      "id": 17,
+      "username": "user_2",
+      "userpassword": "ba8c2644e819314acf8a2bb656713b20ec65f063",
+      "description": "Password was checked in haveibeenpwned.com"
    }
 ]}
 `
 
-* DELETE http://localhost:8000/api/users/{id} then you will get response as follow sample
+##### PUT http://localhost:8000/api/users/{id} then you will get response as follow sample
+* Example of PUT requested data
+`
+{
+   "username":"user_updated_test",
+   "userpassword": "password_updated_test"
+}
+`
+* Example of PUT responsed data
+`
+{
+   "id": 16,
+   "username": "user_updated_test",
+   "userpassword": "74c23a19d5cc49b25f39ce7f7846d7c8ea4a6d64",
+   "description": "Password was checked in haveibeenpwned.com"
+}
+`
+
+##### DELETE http://localhost:8000/api/users/{id} then you will get response as follow sample
 `
 "Deleted user id : 3 completely !"
 
