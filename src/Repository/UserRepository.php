@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use phpDocumentor\Reflection\DocBlock\Tags\Throws;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -45,7 +46,7 @@ class UserRepository extends ServiceEntityRepository
 
             return "Deleted user id : ".$id." completely !";
         } catch (\Exception $ex) {
-            Throws::create($ex);
+            Throws($ex);
         }
     }
 }

@@ -35,15 +35,14 @@ class UserController extends ApiController
     }
 
     /**
-     * @Route("/users/{id}", name="users")
-     * @Method({"GET", "POST", "PUT", "DELETE"})
+     * @Route("/users", name="users")
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
-     * @param integer $id
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function index(Request $request, $id)
+    public function users(Request $request)
     {
         $method = $_SERVER["REQUEST_METHOD"];
 
@@ -61,6 +60,28 @@ class UserController extends ApiController
                 } catch (exception $e) {
                     return $this->respondValidationError('POST /Users Error!');
                 }
+
+            default:
+                return $this->respondValidationError("Not allow method " . $method);
+        }
+    }
+
+    /**
+     * @Route("/users/{id}", name="user_id")
+     * @Method({"GET", "PUT", "DELETE"})
+     *
+     * @param Request $request
+     * @param integer $id
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function user_id(Request $request, $id)
+    {
+        $method = $_SERVER["REQUEST_METHOD"];
+
+        switch ($method) {
+            case "GET":
+                return $this->respond($this->userRepository->find($id));
 
             case "PUT":
                 try {
@@ -80,5 +101,4 @@ class UserController extends ApiController
                 return $this->respondValidationError("Not allow method " . $method);
         }
     }
-
 }
