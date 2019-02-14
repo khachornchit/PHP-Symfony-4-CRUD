@@ -66,7 +66,11 @@ class User
         $data = json_decode($requestContent, true);
         $created = new self();
         if (isset($data["username"])) $created->setUsername($data["username"]);
-        if (isset($data["userpassword"])) $created->setUserpassword($data["userpassword"]);
+
+        if (isset($data["userpassword"])) {
+            $hashed_password = password_hash($data["userpassword"], PASSWORD_DEFAULT);
+            $created->setUserpassword($hashed_password);
+        }
 
         return $created;
     }
@@ -80,7 +84,12 @@ class User
     {
         $data = json_decode($requestContent, true);
         if (isset($data["username"])) $updated->setUsername($data["username"]);
-        if (isset($data["userpassword"])) $updated->setUserpassword($data["userpassword"]);
+//        if (isset($data["userpassword"])) $updated->setUserpassword($data["userpassword"]);
+
+        if (isset($data["userpassword"])) {
+            $hashed_password = password_hash($data["userpassword"], PASSWORD_DEFAULT);
+            $updated->setUserpassword($hashed_password);
+        }
 
         return $updated;
     }
