@@ -68,7 +68,7 @@ class User
         if (isset($data["username"])) $created->setUsername($data["username"]);
 
         if (isset($data["userpassword"])) {
-            $hashed_password = password_hash($data["userpassword"], PASSWORD_DEFAULT);
+            $hashed_password = sha1($data["userpassword"]);
             $created->setUserpassword($hashed_password);
         }
 
@@ -87,7 +87,7 @@ class User
 //        if (isset($data["userpassword"])) $updated->setUserpassword($data["userpassword"]);
 
         if (isset($data["userpassword"])) {
-            $hashed_password = password_hash($data["userpassword"], PASSWORD_DEFAULT);
+            $hashed_password = sha1($data["userpassword"]);
             $updated->setUserpassword($hashed_password);
         }
 
