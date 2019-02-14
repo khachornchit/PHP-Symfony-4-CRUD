@@ -47,7 +47,7 @@ Then you will receive response JSON data as follow
    }
 ]}
 
-* PUT *http://localhost:8000/api/users/{id} then you will get response as follow sample
+* PUT http://localhost:8000/api/users/{id} then you will get response as follow sample
 `
 {"users": [
       {
@@ -63,7 +63,7 @@ Then you will receive response JSON data as follow
 ]}
 `
 
-* DELETE *http://localhost:8000/api/users/{id} then you will get response as follow sample
+* DELETE http://localhost:8000/api/users/{id} then you will get response as follow sample
 `
 "Deleted user id : 3 completely !"
 
