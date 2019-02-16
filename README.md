@@ -13,8 +13,8 @@ Feel free to contact Pluto Solutions <hi@pluto.solutions> to get full functional
 * DATABASE_URL=mysql://{username}:{password}@{host}:{port}/{database}
 
 ### Create database schema using follow command
-* php bin/console d:d:c
-* php bin/console d:m:m
+* php bin/console doctrine:database:create
+* php bin/console doctrine:migrations:migrate
 
 ### Start server
 * php bin/console server:run 0.0.0.0:8000
