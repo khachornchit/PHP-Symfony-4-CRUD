@@ -17,9 +17,3 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
-
-src/Controller/ApiController.php
-src/Controller/UserController.php
-
-src/Migrations/Version20190214114254.php
-src/Migrations/Version20190214172120.php
